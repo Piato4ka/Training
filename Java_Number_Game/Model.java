@@ -4,9 +4,9 @@ package Java_Number_Game;
 
 public class Model {
 
-	int secretNumber = (int) (Math.random() * 102) + 0;
-	int min = 0;
-	int max = 100;
+	int min = 1;
+	int max = 99;
+	int secretNumber = (int) (Math.ceil(Math.random() * max - min - 1) + min);
 	int countTries = 0;
 	int playerNumber;
 	boolean endGame;
@@ -22,15 +22,15 @@ public class Model {
 	public int getMin() {
 		return min;
 	}
-	// в контрoллере
 
-	void changeDiapason() { 
-		if (playerNumber > secretNumber) {
-			max = playerNumber;
-		} else if (playerNumber < secretNumber) {
-			min = playerNumber;
-		} else if (playerNumber == secretNumber) {
+	public void changeDiapason() {
+		if (playerNumber == secretNumber) {
 			endGame = true;
+		} else if (playerNumber > secretNumber) {
+			max = playerNumber;
+		} else {
+			min = playerNumber;
 		}
+
 	}
 }
