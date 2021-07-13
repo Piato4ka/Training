@@ -18,14 +18,14 @@ public class Controller implements RegexContainer {
 
     public void processUser() {
         Scanner sc = new Scanner(System.in);
-        chooseLocale (Language, "EN");
+        chooseLocale (Language);
         model.setName(registerName (sc, (Language.equals("EN") ?REGEX_NAME_LAT :REGEX_NAME_UKR)));
         model.setLogin(registerLogin(sc,REGEX_LOGIN));
         System.out.print(model.getName() + " " + model.getLogin());
     }
 
-    public void chooseLocale (String language, String country) {
-        Locale locale = new Locale (language, country);
+    public void chooseLocale (String language) {
+        Locale locale = new Locale (language);
         ResourceBundle rb = ResourceBundle.getBundle ("message", locale);
         this.rb = rb;
     }
