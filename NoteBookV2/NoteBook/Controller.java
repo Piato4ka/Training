@@ -1,4 +1,6 @@
 package NoteBook;
+import sun.rmi.runtime.Log;
+
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -18,9 +20,15 @@ public class Controller implements RegexContainer {
 
     public void processUser() {
         Scanner sc = new Scanner(System.in);
-        chooseLocale (Language);
-        model.setName(registerName (sc, (Language.equals("EN") ?REGEX_NAME_LAT :REGEX_NAME_UKR)));
-        model.setLogin(registerLogin(sc,REGEX_LOGIN));
+        chooseLocale(Language);
+        model.setName(registerName(sc, (Language.equals("EN") ? REGEX_NAME_LAT : REGEX_NAME_UKR)));
+        while (!model.loginRegistered) {
+            try {
+                model.setLogin(registerLogin(sc, REGEX_LOGIN));
+            } catch (LoginAlreadyRegisteredException ex) {
+                System.out.println(rb.getString("login.already.registered.exception"));
+            }
+        }
         System.out.print(model.getName() + " " + model.getLogin());
     }
 

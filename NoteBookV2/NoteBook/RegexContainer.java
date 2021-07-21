@@ -1,6 +1,7 @@
 package NoteBook;
 
 public interface RegexContainer {
+    // choose language - write UA or EN
     String Language = "UA";
     // Cyrillic name
     String REGEX_NAME_UKR = "^[А-ЩЬЮЯҐІЇЄ][а-щьюяґіїє']{1,20}$";
